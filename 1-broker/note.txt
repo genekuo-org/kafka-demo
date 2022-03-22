@@ -1,0 +1,49 @@
+kafka-topics --create --topic first-topic\
+ --bootstrap-server localhost:9092\
+ --replication-factor 1\
+ --partitions 1
+
+kafka-console-producer --topic first-topic\
+  --broker-list localhost:9092\
+  --property parse.key=true\
+  --property key.separator=":"
+
+key:first
+key:second
+key:third
+
+kafka-console-consumer --topic first-topic\
+ --bootstrap-server localhost:9092 \
+ --from-beginning \
+ --property print.key=true \
+ --property key.separator="-"
+
+##############
+
+kafka-topics --create --topic second-topic\
+ --bootstrap-server localhost:9092\
+ --replication-factor 1\
+ --partitions 1
+
+kafka-console-consumer --topic second-topic\
+ --bootstrap-server broker:9092 \
+ --property print.key=true \
+ --property key.separator="-" \
+ --partition 0
+
+kafka-console-producer --topic second-topic\
+ --broker-list localhost:9092\
+ --property parse.key=true\
+ --property key.separator=":"
+
+key1:first
+key2:second
+key1:third
+key2:fourth
+
+kafka-console-consumer --topic second-topic\
+ --bootstrap-server broker:9092\
+  --property print.key=true\
+  --property key.separator="-"\
+  --partition 1\
+  --from-beginning
