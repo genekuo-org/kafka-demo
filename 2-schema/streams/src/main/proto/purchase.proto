@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package bbejeck.chapter_3.proto;
+option java_outer_classname = "PurchaseProto";
+
+message Purchase {
+    string item = 1;
+    double amount = 2;
+}

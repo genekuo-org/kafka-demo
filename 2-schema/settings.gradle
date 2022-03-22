@@ -1,0 +1,4 @@
+rootProject.name = '2-schema'
+
+include 'sr-backward' , 'sr-forward' , 'sr-full'
+include 'streams'
