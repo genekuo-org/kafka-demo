@@ -20,13 +20,7 @@ Table of Contents
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
-# KafkaEventStreaming
-Source code repository for the 2nd Edition of Kafka Streams in Action
-
 ## Prerequisites
-
-The source code for [Event Streaming with Kafka Streams and ksqlDB](https://www.manning.com/books/event-streaming-with-kafka-streams-and-ksqldb) has a few 
-prerequisites you'll need to make sure you have installed to get everything working smoothly.
 
 1. Java, the project uses version 14 from [AdoptOpenJDK](https://adoptopenjdk.net/).
 2. [Gradle](https://gradle.org/) version 7.0  Although you don't need to install Gradle if you don't have it.
@@ -75,18 +69,11 @@ You'll notice the project contains four modules
 3. sr-forward
 4. sr-full
 
-The `streams` module is the main module and contains all the source code for the book.  You'll spend the majority of
+The `streams` module is the main module and contains all the source code.  You'll spend the majority of
 your time working with the code here.  
 
 Note that when running any commands other than `clean` or `build` it's best important
 to always prefix the command with the module name which is the target of the command.
-
-In the appendix-B of the book, there is a tutorial walking you through migrating schemas and the permitted changes for each
-compatibility mode.  Each module contains an updated schema and updated producer and consumer clients to
-support the schema changes.  I've named the modules to match compatibility mode it supports.
-
-The appendix walks you through a series of steps including the schema changes and explains what happens and why at each step,
-so I won't go into that level of detail here. So please consult appendix-B for the full explanation.
 
 At a high-level, you'll work through a series of changes and compatibility modes proceeding in this order of compatibility
 `backward`, `forward` and finally `full`.
