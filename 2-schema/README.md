@@ -19,6 +19,9 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 # Prerequisites
 
 1. Java, the project uses version 14 from [AdoptOpenJDK](https://adoptopenjdk.net/).
+    `sdk list java`
+    `sdk install java 14.0.2-zulu`
+    `sdk use java 14.0.2-zulu`
 2. [Gradle](https://gradle.org/) version 6.8.3.  Although you don't need to install Gradle if you don't have it.
    the included Gradle "wrapper" script will install it if needed.  Use `./gradlew` for mac OS/'nix and `gradlew.bat` on Windows.
 3. [Docker Desktop](https://www.docker.com/products/docker-desktop) version 3.2.2
@@ -28,17 +31,17 @@ I've tried to make everything platform neutral, but just for context here's the 
 that everything was developed and tested:
 1. OS: macOS Catalina 10.15.7
 2. Shell: `zsh`
-3. IDE: IntelliJ IDEA 
+3. IDE: IntelliJ IDEA
 
 
 All other dependencies should be installed via the `build.gradle` file.
 
 # Getting started
- 
-Before you get started, you'll need to generate the Java code from 
+
+Before you get started, you'll need to generate the Java code from
 the Avro, Protobuf and JSON Schema schemas so the project will compile.
 
-Run `./gradlew build`  or if you are on Windows `gradlew.bat build`. 
+Run `./gradlew build`  or if you are on Windows `gradlew.bat build`.
 
 Note that if you don't have Gradle installed, running the `gradlew` script installs Gradle the first
 time you run it.
@@ -46,8 +49,8 @@ time you run it.
 # Troubleshooting issues
 
 For the most part, using docker with the example code is a seamless operation.  Should you encounter any issues the first
-line of debugging should be this command `docker logs <image name>` where the image name is either `zookeeper`, `broker`, 
-or `schema-registry`.  Also, all the examples in this repo use `Log4J` and write to the 
+line of debugging should be this command `docker logs <image name>` where the image name is either `zookeeper`, `broker`,
+or `schema-registry`.  Also, all the examples in this repo use `Log4J` and write to the
 `event_streaming_dev.log` file in the `logs` directory at the root of the project.
 
 # Command line helper
@@ -75,7 +78,7 @@ At a high-level, you'll work through a series of changes and compatibility modes
 `backward`, `forward` and finally `full`.
 
 For each step of the tutorial you'll take the following steps
-
+0. Find gradle tasks: run `./gradlew tasks`
 1. Set the compatibility mode: run the `<module name>:configSubjectsTask` to set the compatibility mode
 2. Test the updated schema: execute the `<module name>:testSchemasTask` to test the schema changes are compatible
 3. Register the updated schema: run the `<module name>:registerSchemasTask` and register the new schema
@@ -92,7 +95,7 @@ how you handle schema changes within different compatibility modes. Not how you 
 project
 
 
-# Chapter 2 
+# Chapter 2
 
 For this chapter there's only some commands you can run
 from the console.  See `project-commands.sh` , as some commands have functions wrapping them.
@@ -103,8 +106,8 @@ The code in chapter 3 is used for demonstrating how to interact with Schema
 Registry and not with an emphasis on the producer and consumer code.
 
 I've broken up the examples across two main packages: `chapter_3.producer` and `chapter_3.consumer`
-Within those two, there are additional packages of `avro`, `proto`, and `json` containing 
-example code used to drive serializing and deserializing examples using the 
+Within those two, there are additional packages of `avro`, `proto`, and `json` containing
+example code used to drive serializing and deserializing examples using the
 serializers for the given format indicated by the package name.
 ## A guided tour to the chapter 3 code
 It's a good idea for me to describe the contents of the directories and the function of
@@ -136,17 +139,17 @@ each class:
         * `ProtoConsumer` Initial consumer example for working with Protobuf schemas
         * `ProtoReferenceCollegeConsumer` Example consumer for working with schema references in Protobuf
         * `ProtoReferenceCompanyConsumer` Example consumer for working with schema references in Protobuf
-    
+
 * chapter_3
     *  `AvroReflectionProduceConsumeExample` A simple example using the AvroReflection serializer and deserializer.  I will update
     chapter 3 in another MEAP release to cover using this part of the Avro API
-       
+
     *  `ProtobufMultipleEventTopicExample`  This example demonstrates using schema references with Protobuf.  I don't cover
     working with possible different types with producers and consumers until chapter 4 when we cover
        clients.
     *  `AvroUnionSchemaMultipleEventProduceConsumeExample` Also, an example of using schema references, but with Avro this time.  Again
     we'll cover working with multiple types with Kafka clients in chapter 4
-    
+
 ## Running the examples
 
 
@@ -158,7 +161,7 @@ For the examples nested under the `producer` or `consumer` packages, you need ru
 1. Run the producer - the producer examples send a few records then shutdown
 2. Run the consumer - the consumer starts up and displays some information on the console then it shuts down
 after two consecutive `poll` calls without retrieving any records it shuts down.
-   
+
 The examples that are directly under the `chapter_3` package have a producer and consumer in them and you only need to run
 these directly. For this release of the MEAP, I'm assuming that you'll run these examples from within the IDE.  
 In a future MEAP release(chapter 4?) I'm going to unit tests covering all code.  You can still run the examples as stand-alone
@@ -182,17 +185,3 @@ to specify the module in any of the commands, otherwise Gradle will execute the 
 modules, and the different Schema Registry modules will clash resulting a failure.
 
 Also, if you are running on Windows use `gradlew.bat` instead.
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
