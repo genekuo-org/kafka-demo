@@ -20,18 +20,18 @@ kafka-console-consumer --topic first-topic\
 
 ##############
 
-kafka-topics --create --topic second-topic\
+kafka-topics --create --topic third-topic\
  --bootstrap-server localhost:9092\
  --replication-factor 1\
- --partitions 1
+ --partitions 2
 
-kafka-console-consumer --topic second-topic\
+kafka-console-consumer --topic third-topic\
  --bootstrap-server broker:9092 \
  --property print.key=true \
  --property key.separator="-" \
  --partition 0
 
-kafka-console-producer --topic second-topic\
+kafka-console-producer --topic third-topic\
  --broker-list localhost:9092\
  --property parse.key=true\
  --property key.separator=":"
